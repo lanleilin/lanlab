@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>indexTest</title>
-    <!--<script src="js/mapTest.js"></script>-->
-    <script type="text/javascript">
-    	var obj1={
+window.onload=function(){
+	    	var obj1={
     		a:100,
     		b:20,
     		c:10
@@ -29,9 +23,4 @@
     	
     	var copy=Object.assign({},obj4,obj5,obj6);
     	console.log(copy)
-    </script>
-</head>
-<body>
-
-</body>
-</html>
+}

@@ -4,4 +4,7 @@ window.onload=function () {
     }
     var arr=[1,3,6,7,9,2]
     console.log(arr.map(pow))
+    let a=3
+    let b=3
+    console.log('')
 }
