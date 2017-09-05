@@ -46,4 +46,15 @@ window.onload = function() {
 		// array: 指向Array对象本身
 		alert(element);
 	});
+	
+//	reduce()把结果继续和序列的下一个元素做累积计算
+var arr = [1, 3, 5, 7, 9];
+arr.reduce(function (x, y) {
+    return x + y;
+}); // 25
+
+var arr1 = [1, 3, 5, 7, 9];
+arr1.reduce(function (x, y) {
+    return x * 10 + y;
+}); // 13579
 }
