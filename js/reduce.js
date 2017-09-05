@@ -32,4 +32,26 @@
 	    return x % 2 !== 0;
 	});
 	r; // [1, 5, 9, 15]
-	
+	//4 sort
+	var arrSort = [10, 20, 1, 2];
+	arrSort.sort(function (x, y) {
+    if (x < y) {
+        return -1;
+    }
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+}); // [1, 2, 10, 20]
+
+//闭包延迟执行
+function lazy_sum(arr) {
+    var sum = function () {
+        return arr.reduce(function (x, y) {
+            return x + y;
+        });
+    }
+    return sum;
+}
+var f = lazy_sum([1, 2, 3, 4, 5]); // function sum()
+f()//15
