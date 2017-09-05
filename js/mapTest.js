@@ -4,8 +4,6 @@ window.onload = function() {
 	}
 	var arr = [1, 3, 6, 7, 9, 2]
 	console.log(arr.map(pow))
-	let a = 3
-	let b = 3
 
 	var m = new Map([
 		['Michael', 95],
@@ -30,31 +28,32 @@ window.onload = function() {
 		[3, 'z']
 	]);
 	for(var x of a) { // 遍历Array
-		alert(x);
+		console.log(x);
 	}
 	for(var x of s) { // 遍历Set
-		alert(x);
+		console.log(x);
 	}
 	for(var x of m) { // 遍历Map
-		alert(x[0] + '=' + x[1]);
+		console.log(x[0] + '=' + x[1]);
 	}
 
-	var a = ['A', 'B', 'C'];
-	a.forEach(function(element, index, array) {
+	var a1 = ['A', 'B', 'C'];
+	a1.forEach(function(element, index, array) {
 		// element: 指向当前元素的值
 		// index: 指向当前索引
 		// array: 指向Array对象本身
-		alert(element);
+		console.log(element);
 	});
-	
-//	reduce()把结果继续和序列的下一个元素做累积计算
-var arr = [1, 3, 5, 7, 9];
-arr.reduce(function (x, y) {
-    return x + y;
-}); // 25
 
-var arr1 = [1, 3, 5, 7, 9];
-arr1.reduce(function (x, y) {
-    return x * 10 + y;
-}); // 13579
+	//	reduce()把结果继续和序列的下一个元素做累积计算
+	var arr = [1, 3, 5, 7, 9];
+	var ar = arr.reduce(function(x, y) {
+		return x + y;
+	}); // 25
+	console.log(ar)
+	var arr1 = [1, 3, 5, 7, 9];
+	arr1.reduce(function(x, y) {
+		return x * 10 + y;
+	}); // 13579
+	//filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。
 }
