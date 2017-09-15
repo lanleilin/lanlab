@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>indexTest</title>
     <!--<script src="js/mapTest.js"></script>-->
-
-
+    <script src="js/jquery.min.js"></script>
+    <style>
+        #test-promise-log>p:first-letter {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
-<div id="test-promise-log">
-	<p>hll</p>
-</div>
-    <!--<script src="js/promise.js" type="text/javascript" charset="utf-8"></script>-->
-        <script type="text/javascript">
- 		var a,b=['success'];
- 		console.log(a);
- 		console.log(b);
+    <div id="test-promise-log">
+        <video src="./static/withyjy.mp4" width="400px" autoplay="autoplay" controls="controls"></video>
+    </div>
+    <script>
+        $(function() {
+            console.log('success');
+            $.ajax({
+                url: "/AnyChatFaceXClient/v1/client/system/list1233",
+                dataType: "json",
+                success: function(res) {
+                    if (res.errorcode == 0) {
+                        console.log("成功！");
+
+                    }
+                },
+                error: function(err) {
+                    console.log("系统错误！");
+                }
+            });
+        })
     </script>
 </body>
+
 </html>
