@@ -10,14 +10,52 @@
         #test-promise-log>p:first-letter {
             color: red;
         }
+        
+        #ipt1 {
+            position: absolute;
+            left: -9999px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="test-promise-log">
-        <video src="./static/withyjy.mp4" width="400px" autoplay="autoplay" controls="controls"></video>
+    <div id="box">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" class="ipt">
+        <input type="text" placeholder="input" id="ipt1">
+
     </div>
+    <button id="btn">click</button>
+    <!-- <div id="test-promise-log"> -->
+    <!-- <video src="./static/withyjy.mp4" width="400px" autoplay="autoplay" controls="controls"></video> -->
+    <!-- </div> -->
     <script>
+        var ipt = document.getElementsByClassName('ipt');
+        console.log(ipt.length);
+        var e = e || window.event;
+        console.info(ipt[3].text)
+        document.getElementById('btn').addEventListener('click', function() {
+            console.log(ipt[3].value)
+            ipt[4].focus();
+            // console.log(e.target)
+        })
+        var index = 0;
+        for (let i = 0; i < ipt.length; i++) {
+            ipt[i].addEventListener('keyup', function() {
+                console.log('sss')
+                if (ipt[i].value != 0 && i != 5) {
+                    ipt[i + 1].focus();
+                } else if (i == 5) {
+                    document.getElementById('ipt1').focus();
+                }
+
+            })
+
+        }
     </script>
 </body>
 
