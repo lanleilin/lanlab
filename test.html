@@ -1,143 +1,133 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title></title>
     <style>
-        * {
+        html,
+        body {
+            height: 100%;
+            width: 100%;
             margin: 0;
             padding: 0;
-        }
-        
-        body {
             overflow: hidden;
         }
         
-        #myCanvas {
-            border: 1px;
-            background-color: lavenderblush;
-        }
-        
-        .a {
-            text-align: center;
-            font-weight: bold;
-            font-size: 17px;
-            color: #787878;
-            font-family: "Comic Sans MS", cursive;
-        }
-        
-        .tou {
-            font-size: 14px;
-            text-align: center;
-            color: #787878;
-            font-family: "Comic Sans MS", cursive;
+        #particle-canvas {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 
-<body><canvas id="myCanvas"></canvas> </body>
-<script type="text/javascript">
-    //获取窗口宽高
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    //设置画布宽高与窗口宽高一样	
-    canvas.width = w;
-    canvas.height = h;
-    //随机数函数		
-    function fnRandom(min, max) {
-        return parseInt((max - min) * Math.random() + min + 1)
-    }
+<body>
+    <div id="particle-canvas"></div>
+    <script>
+        // particle.min.js hosted on GitHub
+        // Scroll down for initialisation code
 
-    function Round() {
-        this.r = fnRandom(10, 30);
-        this.diam = this.r * 2;
-        //随机位置			
-        var x = fnRandom(0, canvas.width - this.r);
-        this.x = x < this.r ? this.r : x;
-        var y = fnRandom(0, canvas.height - this.r);
-        this.y = y < this.r ? this.r : y
-            //随机速度		
-        var speed = fnRandom(2, 4) / 10
-        this.speedX = fnRandom(0, 4) > 2 ? speed : -speed;
-        this.speedY = fnRandom(0, 4) > 2 ? speed : -speed;
-        //颜色			
-        this.color = "orange";
-    }
-    Round.prototype.draw = function() {
-        //绘制函数		
-        ctx.fillStyle = this.color;
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
-    }
-    Round.prototype.move = function() {
-            this.x += this.speedX;
-            if (this.x > canvas.width - this.r) {
-                //			
-                this.speedX *= -1;
-                this.x = this.r
-            } else if (this.x < this.r) {
-                this.x = canvas.width - this.r
-            }
-            this.y += this.speedY;
-            if (this.y > canvas.height - this.r) {
-                //			
-                this.speedY *= -1;
-                this.y = this.r
-            } else if (this.y < this.r) {
-                this.y = canvas.height - this.r
-            }
-        } //使用Round		
-    var allRound = [];
-
-    function initRound() {
-        //初始化30个圆形对象,放到数组中		
-        for (var i = 0; i < 30; i++) {
-            var obj = new Round();
-            obj.draw();
-            obj.move();
-            allRound.push(obj);
-        }
-    }
-    initRound();
-    var dxdy = []
-
-    function roundMove() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        //遍历所有的圆形对象,让对象自己重绘,移动		
-        for (var i = 0; i < allRound.length; i++) {
-            var round = allRound[i];
-            round.draw();
-            round.move();
-            dxdy[i] = {
-                dx: round.x,
-                dy: round.y
+        ! function(a) {
+            var b = "object" == typeof self && self.self === self && self || "object" == typeof global && global.global === global && global;
+            "function" == typeof define && define.amd ? define(["exports"], function(c) {
+                b.ParticleNetwork = a(b, c)
+            }) : "object" == typeof module && module.exports ? module.exports = a(b, {}) : b.ParticleNetwork = a(b, {})
+        }(function(a, b) {
+            var c = function(a) {
+                this.canvas = a.canvas, this.g = a.g, this.particleColor = a.options.particleColor, this.x = Math.random() * this.canvas.width, this.y = Math.random() * this.canvas.height, this.velocity = {
+                    x: (Math.random() - .5) * a.options.velocity,
+                    y: (Math.random() - .5) * a.options.velocity
+                }
             };
-            var dx = dxdy[i].dx;
-            var dy = dxdy[i].dy;
-            for (var j = 0; j < i; j++) {
-                var sx = dxdy[j].dx;
-                var sy = dxdy[j].dy;
-                l = Math.sqrt((dx - sx) * (dx - sx) + (dy - sy) * (dy - sy));
-                var C = 1 / l * 7 - 0.009;
-                var o = C > 0.03 ? 0.03 : C;
-                ctx.strokeStyle = 'rgba(0,0,0,' + o + ')'
-                console.log(l);
-                ctx.beginPath()
-                ctx.lineWidth = 2;
-                ctx.moveTo(dxdy[i].dx, dxdy[i].dy)
-                ctx.lineTo(dxdy[j].dx, dxdy[j].dy);
-                ctx.closePath()
-                ctx.stroke()
-            }
-        }
-        window.requestAnimationFrame(roundMove)
-    }
-    roundMove();
-</script>
+            return c.prototype.update = function() {
+                (this.x > this.canvas.width + 20 || this.x < -20) && (this.velocity.x = -this.velocity.x), (this.y > this.canvas.height + 20 || this.y < -20) && (this.velocity.y = -this.velocity.y), this.x += this.velocity.x, this.y += this.velocity.y
+            }, c.prototype.h = function() {
+                this.g.beginPath(), this.g.fillStyle = this.particleColor, this.g.globalAlpha = .7, this.g.arc(this.x, this.y, 1.5, 0, 2 * Math.PI), this.g.fill()
+            }, b = function(a, b) {
+                this.i = a, this.i.size = {
+                    width: this.i.offsetWidth,
+                    height: this.i.offsetHeight
+                }, b = void 0 !== b ? b : {}, this.options = {
+                    particleColor: void 0 !== b.particleColor ? b.particleColor : "#fff",
+                    background: void 0 !== b.background ? b.background : "#1a252f",
+                    interactive: void 0 !== b.interactive ? b.interactive : !0,
+                    velocity: this.setVelocity(b.speed),
+                    density: this.j(b.density)
+                }, this.init()
+            }, b.prototype.init = function() {
+                if (this.k = document.createElement("div"), this.i.appendChild(this.k), this.l(this.k, {
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        "z-index": 1
+                    }), /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.options.background)) this.l(this.k, {
+                    background: this.options.background
+                });
+                else {
+                    if (!/\.(gif|jpg|jpeg|tiff|png)$/i.test(this.options.background)) return console.error("Please specify a valid background image or hexadecimal color"), !1;
+                    this.l(this.k, {
+                        background: 'url("' + this.options.background + '") no-repeat center',
+                        "background-size": "cover"
+                    })
+                }
+                if (!/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.options.particleColor)) return console.error("Please specify a valid particleColor hexadecimal color"), !1;
+                this.canvas = document.createElement("canvas"), this.i.appendChild(this.canvas), this.g = this.canvas.getContext("2d"), this.canvas.width = this.i.size.width, this.canvas.height = this.i.size.height, this.l(this.i, {
+                    position: "relative"
+                }), this.l(this.canvas, {
+                    "z-index": "20",
+                    position: "relative"
+                }), window.addEventListener("resize", function() {
+                    return this.i.offsetWidth === this.i.size.width && this.i.offsetHeight === this.i.size.height ? !1 : (this.canvas.width = this.i.size.width = this.i.offsetWidth, this.canvas.height = this.i.size.height = this.i.offsetHeight, clearTimeout(this.m), void(this.m = setTimeout(function() {
+                        this.o = [];
+                        for (var a = 0; a < this.canvas.width * this.canvas.height / this.options.density; a++) this.o.push(new c(this));
+                        this.options.interactive && this.o.push(this.p), requestAnimationFrame(this.update.bind(this))
+                    }.bind(this), 500)))
+                }.bind(this)), this.o = [];
+                for (var a = 0; a < this.canvas.width * this.canvas.height / this.options.density; a++) this.o.push(new c(this));
+                this.options.interactive && (this.p = new c(this), this.p.velocity = {
+                    x: 0,
+                    y: 0
+                }, this.o.push(this.p), this.canvas.addEventListener("mousemove", function(a) {
+                    this.p.x = a.clientX - this.canvas.offsetLeft, this.p.y = a.clientY - this.canvas.offsetTop
+                }.bind(this)), this.canvas.addEventListener("mouseup", function(a) {
+                    this.p.velocity = {
+                        x: (Math.random() - .5) * this.options.velocity,
+                        y: (Math.random() - .5) * this.options.velocity
+                    }, this.p = new c(this), this.p.velocity = {
+                        x: 0,
+                        y: 0
+                    }, this.o.push(this.p)
+                }.bind(this))), requestAnimationFrame(this.update.bind(this))
+            }, b.prototype.update = function() {
+                this.g.clearRect(0, 0, this.canvas.width, this.canvas.height), this.g.globalAlpha = 1;
+                for (var a = 0; a < this.o.length; a++) {
+                    this.o[a].update(), this.o[a].h();
+                    for (var b = this.o.length - 1; b > a; b--) {
+                        var c = Math.sqrt(Math.pow(this.o[a].x - this.o[b].x, 2) + Math.pow(this.o[a].y - this.o[b].y, 2));
+                        c > 120 || (this.g.beginPath(), this.g.strokeStyle = this.options.particleColor, this.g.globalAlpha = (120 - c) / 120, this.g.lineWidth = .7, this.g.moveTo(this.o[a].x, this.o[a].y), this.g.lineTo(this.o[b].x, this.o[b].y), this.g.stroke())
+                    }
+                }
+                0 !== this.options.velocity && requestAnimationFrame(this.update.bind(this))
+            }, b.prototype.setVelocity = function(a) {
+                return "fast" === a ? 1 : "slow" === a ? .33 : "none" === a ? 0 : .66
+            }, b.prototype.j = function(a) {
+                return "high" === a ? 5e3 : "low" === a ? 2e4 : isNaN(parseInt(a, 10)) ? 1e4 : a
+            }, b.prototype.l = function(a, b) {
+                for (var c in b) a.style[c] = b[c]
+            }, b
+        });
+
+        // Initialisation
+
+        var canvasDiv = document.getElementById('particle-canvas');
+        var options = {
+            particleColor: '#888',
+            background: 'https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/demo-bg.jpg',
+            interactive: true,
+            speed: 'medium',
+            density: 'high'
+        };
+        var particleCanvas = new ParticleNetwork(canvasDiv, options);
+    </script>
+</body>
 
 </html>
