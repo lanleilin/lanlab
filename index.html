@@ -20,19 +20,27 @@
 
 <body>
     <div id="box">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" class="ipt">
-        <input type="text" placeholder="input" id="ipt1">
+        <a href="https://codepen.io/JulianLaval/pen/KpLXOO">canvas</a>
+        <a href="https://github.com/scscms/vue-scscms">vue+koa+mysql</a>
+        <a href="http://www.bitbug.net/"> icon 生成</a>
+
+        <h1>hello</h5>
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" class="ipt">
+            <input type="text" placeholder="input" id="ipt1">
 
     </div>
     <button id="btn">click</button>
+    <!-- 南航视频 -->
     <!-- <div id="test-promise-log"> -->
     <!-- <video src="./static/withyjy.mp4" width="400px" autoplay="autoplay" controls="controls"></video> -->
     <!-- </div> -->
+    <!-- 9-28 优酷测试 -->
+    <video width="400" height="300" src="https://static.youku.com/v201709271000.0/v/swf/upsplayer/loader.swf" autoplay="autoplay"></video>
     <script>
         var ipt = document.getElementsByClassName('ipt');
         console.log(ipt.length);
@@ -41,7 +49,6 @@
         document.getElementById('btn').addEventListener('click', function() {
             console.log(ipt[3].value)
             ipt[4].focus();
-            // console.log(e.target)
         })
         var index = 0;
         for (let i = 0; i < ipt.length; i++) {
@@ -56,6 +63,13 @@
             })
 
         }
+        // 9-26正则
+        let str = '020-2425424-888 010-45555677-876';
+        console.log(str)
+        let match = new RegExp('020', 'g');
+        let result = str.replace(match, 'hello');
+        console.log(result);
+        //
     </script>
 </body>
 
