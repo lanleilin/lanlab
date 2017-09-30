@@ -3,73 +3,66 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>indexTest</title>
-    <!--<script src="js/mapTest.js"></script>-->
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/lan.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/vue.min.js"></script>
     <style>
-        #test-promise-log>p:first-letter {
-            color: red;
+        * {
+            margin: 0;
+            padding: 0;
         }
         
-        #ipt1 {
-            position: absolute;
-            left: -9999px;
+        #box {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cycle {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+            border-radius: 50%;
         }
     </style>
 </head>
 
 <body>
     <div id="box">
-        <a href="https://codepen.io/JulianLaval/pen/KpLXOO">canvas</a>
-        <a href="https://github.com/scscms/vue-scscms">vue+koa+mysql</a>
-        <a href="http://www.bitbug.net/"> icon 生成</a>
-
-        <h1>hello</h5>
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" class="ipt">
-            <input type="text" placeholder="input" id="ipt1">
-
+        <i class="cycle"></i>
+        <i class="cycle"></i>
+        <i class="cycle"></i>
+        <i class="cycle"></i>
     </div>
-    <button id="btn">click</button>
-    <!-- 南航视频 -->
-    <!-- <div id="test-promise-log"> -->
-    <!-- <video src="./static/withyjy.mp4" width="400px" autoplay="autoplay" controls="controls"></video> -->
-    <!-- </div> -->
-    <!-- 9-28 优酷测试 -->
-    <video width="400" height="300" src="https://static.youku.com/v201709271000.0/v/swf/upsplayer/loader.swf" autoplay="autoplay"></video>
     <script>
-        var ipt = document.getElementsByClassName('ipt');
-        console.log(ipt.length);
-        var e = e || window.event;
-        console.info(ipt[3].text)
-        document.getElementById('btn').addEventListener('click', function() {
-            console.log(ipt[3].value)
-            ipt[4].focus();
-        })
-        var index = 0;
-        for (let i = 0; i < ipt.length; i++) {
-            ipt[i].addEventListener('keyup', function() {
-                console.log('sss')
-                if (ipt[i].value != 0 && i != 5) {
-                    ipt[i + 1].focus();
-                } else if (i == 5) {
-                    document.getElementById('ipt1').focus();
+        $(function() {
+            function setColor() {
+                this.arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+                this.color = '#' +
+                    this.arr[parseInt(Math.random() * 16)] +
+                    this.arr[parseInt(Math.random() * 16)] +
+                    this.arr[parseInt(Math.random() * 16)] +
+                    this.arr[parseInt(Math.random() * 16)] +
+                    this.arr[parseInt(Math.random() * 16)] +
+                    this.arr[parseInt(Math.random() * 16)];
+                return this.color;
+            }
+            // document.getElementsByClassName('cycle')[0].addEventListener
+            document.getElementById('box').addEventListener('click', function() {
+                let cycle = document.getElementsByClassName('cycle');
+                for (let i = 0; i < cycle.length; i++) {
+                    cycle[i].style.background = setColor();
                 }
-
             })
 
-        }
-        // 9-26正则
-        let str = '020-2425424-888 010-45555677-876';
-        console.log(str)
-        let match = new RegExp('020', 'g');
-        let result = str.replace(match, 'hello');
-        console.log(result);
-        //
+
+        })
     </script>
 </body>
 
