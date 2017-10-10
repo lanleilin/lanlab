@@ -53,13 +53,16 @@
                     this.arr[parseInt(Math.random() * 16)];
                 return this.color;
             }
-            // document.getElementsByClassName('cycle')[0].addEventListener
-            document.getElementById('box').addEventListener('click', function() {
-                let cycle = document.getElementsByClassName('cycle');
-                for (let i = 0; i < cycle.length; i++) {
-                    cycle[i].style.background = setColor();
-                }
-            })
+
+            function setBg() {
+                document.getElementById('box').addEventListener('click', function() {
+                    let cycle = document.getElementsByClassName('cycle');
+                    for (let i = 0; i < cycle.length; i++) {
+                        cycle[i].style.background = setColor();
+                    }
+                })
+            }
+
 
 
         })
