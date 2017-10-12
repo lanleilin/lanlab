@@ -13,3 +13,15 @@ function setColor() {
         this.arr[parseInt(Math.random() * 16)];
     return this.color;
 }
+//获取url key
+
+function urlToObj(url) {
+    var str1 = url.split('?')[1].split('&');
+    var js = {};
+    for (var i = 0; i < str1.length; i++) {
+        console.log(str1[i].split('=')[0])
+        js[str1[i].split('=')[0]] = str1[i].split('=')[1];
+    }
+    return js;
+}
+console.log(urlToObj(url))

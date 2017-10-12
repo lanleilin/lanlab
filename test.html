@@ -6,7 +6,9 @@
 </head>
 
 <body>
-
+    <div id="info">
+        <p>hello</p>
+    </div>
     <script>
         var arr = [1, 3, 5, 7, 9];
         arr.reduce(function(x, y) {
@@ -15,6 +17,58 @@
         console.log(arr.reduce(function(x, y) {
             return x * 10 + y;
         }))
+        let name = "lan",
+            time = "today";
+        console.log(`Hello ${name}, how are you ${time}?`)
+        console.log(document.getElementById('info').innerHTML)
+
+        // var foo = {
+        //     n: 1
+        // };
+        // (function(foo) {
+        //     console.log(foo.n);
+        //     foo.n = 3;
+        //     var foo = {
+        //         n: 2
+        //     };
+        //     console.log(foo.n);
+        // })(foo);
+        // console.log(foo.n)
+        // for (var i = 0; i < 5; ++i) {
+        //     setTimeout(function() {
+        //         console.log(i + ' ');
+        //     }, 100);
+        // }
+        var url = "http://www.22.com?name=leilin&sex=1&age=20";
+        // var str1 = url.split('?')[1].split('&');
+        // ["name=leilin", "sex=1", "age=20"]
+        // var js = {};
+        // for (var i = 0; i < str1.length; i++) {
+        //     console.log(str1[i].split('=')[0])
+        //     js[str1[i].split('=')[0]] = str1[i].split('=')[1];
+        // }
+        // name=leilin
+        function urlToObj(url) {
+            var str1 = url.split('?')[1].split('&');
+            var js = {};
+            for (var i = 0; i < str1.length; i++) {
+                console.log(str1[i].split('=')[0])
+                js[str1[i].split('=')[0]] = str1[i].split('=')[1];
+            }
+            return js;
+        }
+        // console.log(urlToObj(url).name)
+        function getTarget(str) {
+            var url = "http://www.22.com?name=leilin&sex=1&age=20";
+            var str1 = url.split('?')[1].split('&');
+            var js = {};
+            for (var i = 0; i < str1.length; i++) {
+                console.log(str1[i].split('=')[0])
+                js[str1[i].split('=')[0]] = str1[i].split('=')[1];
+            }
+            return js[str]
+        }
+        console.log(getTarget('sex'))
     </script>
 </body>
 
