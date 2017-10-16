@@ -2,73 +2,53 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <style>
+        #info {
+            display: inline-block;
+            width: 1.3rem;
+            height: 1.3rem;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAfhJREFUOBGlVD1LHFEUPXfWrzGJO2uhaIQ0iljESgKSpAjBwpXVKikEl6TzD6TwJ4gWaQMBS8WQgCRZ61QpglUgRbQUbMR1XfwodvbmvE1mdt/ssDPBC493733nnrkf7w2QQrSU29D9wY8poJAkkG6hD8O5E+IGgJsHkr8+7hTjdDpsnA0PLkHE4yK2r5iETyYUfdUkkRa96W3VOhLqXv8oFHNhgGCC/Xwc2jFKR0J0966w1IwVp/LasiNGOBTdxV24bhbqenCQRUY9qLzl2CasGEUVdbyA1M5R1wrq/gUqVxUp4tLghCX85D7VlonFksJQ9Un3w5S8c2sy8z3TGtGDRsla8op0vKe3O0UuMRBVDm9N8uX1Zg/3s8+hmU/sGS/wf8kN0UWZP/tgokJCY+jX3ENmWqJ3zNiJonoKXxalcPY9wFqExqmf3fvIuL+SM2WZNX9SCheHAZnZ2++h9FyxufdaQfG6CBznTvQshtDhSyA4jQieRmExhO2gaFBoi5OK8EkYECiqX9jdd1wauP7tbVgrw8a/TzETBpkp1nWZ96sg8+VV8j0j6VF4Dozo3sB4ix0ZypD3iO3r+QvQbfi1KVkobwcBkj//hmp5msSbXHxqlC67bCtDDr2fN/43wYvMaFkK1dOALNjlJa6Z8RuIP0vfAZfVhj/iqoy46fpKwgAAAABJRU5ErkJggg==);
+            background-size: 1.3rem 1.3rem;
+        }
+        
+        #box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 300px;
+            background: lightcoral;
+            background-image: url(./static/img/time.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position-y: 50%;
+        }
+    </style>
 </head>
 
 <body>
     <div id="info">
         <p>hello</p>
     </div>
+    <div id="box">
+        this is text
+    </div>
     <script>
-        var arr = [1, 3, 5, 7, 9];
-        arr.reduce(function(x, y) {
-            return x * 10 + y;
-        }); // 13579
-        console.log(arr.reduce(function(x, y) {
-            return x * 10 + y;
-        }))
-        let name = "lan",
-            time = "today";
-        console.log(`Hello ${name}, how are you ${time}?`)
-        console.log(document.getElementById('info').innerHTML)
-
-        // var foo = {
-        //     n: 1
-        // };
-        // (function(foo) {
-        //     console.log(foo.n);
-        //     foo.n = 3;
-        //     var foo = {
-        //         n: 2
-        //     };
-        //     console.log(foo.n);
-        // })(foo);
-        // console.log(foo.n)
-        // for (var i = 0; i < 5; ++i) {
-        //     setTimeout(function() {
-        //         console.log(i + ' ');
-        //     }, 100);
-        // }
-        var url = "http://www.22.com?name=leilin&sex=1&age=20";
-        // var str1 = url.split('?')[1].split('&');
-        // ["name=leilin", "sex=1", "age=20"]
-        // var js = {};
-        // for (var i = 0; i < str1.length; i++) {
-        //     console.log(str1[i].split('=')[0])
-        //     js[str1[i].split('=')[0]] = str1[i].split('=')[1];
-        // }
-        // name=leilin
-        function urlToObj(url) {
-            var str1 = url.split('?')[1].split('&');
-            var js = {};
-            for (var i = 0; i < str1.length; i++) {
-                console.log(str1[i].split('=')[0])
-                js[str1[i].split('=')[0]] = str1[i].split('=')[1];
+        var js = {
+            "name": "richard",
+            "greet": "hello",
+            "pet": {
+                "dog": "lannister",
+                "cat": "stark"
             }
-            return js;
         }
-        // console.log(urlToObj(url).name)
-        function getTarget(str) {
-            var url = "http://www.22.com?name=leilin&sex=1&age=20";
-            var str1 = url.split('?')[1].split('&');
-            var js = {};
-            for (var i = 0; i < str1.length; i++) {
-                console.log(str1[i].split('=')[0])
-                js[str1[i].split('=')[0]] = str1[i].split('=')[1];
-            }
-            return js[str]
-        }
-        console.log(getTarget('sex'))
+        str = '{"name": "richard", "greet": "hello","pet": { "dog": "lannister", "cat": "stark" }}'
+        var str1 = JSON.parse(str);
+        var str2 = JSON.stringify(js)
+        console.log(str1.name)
+            // var js1 = eval(str);
+            // console.log(js1.name)
+            // console.log(str)
     </script>
 </body>
 
