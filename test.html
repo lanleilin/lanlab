@@ -3,36 +3,66 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
-        #info {
-            display: inline-block;
-            width: 1.3rem;
-            height: 1.3rem;
-            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAfhJREFUOBGlVD1LHFEUPXfWrzGJO2uhaIQ0iljESgKSpAjBwpXVKikEl6TzD6TwJ4gWaQMBS8WQgCRZ61QpglUgRbQUbMR1XfwodvbmvE1mdt/ssDPBC493733nnrkf7w2QQrSU29D9wY8poJAkkG6hD8O5E+IGgJsHkr8+7hTjdDpsnA0PLkHE4yK2r5iETyYUfdUkkRa96W3VOhLqXv8oFHNhgGCC/Xwc2jFKR0J0966w1IwVp/LasiNGOBTdxV24bhbqenCQRUY9qLzl2CasGEUVdbyA1M5R1wrq/gUqVxUp4tLghCX85D7VlonFksJQ9Un3w5S8c2sy8z3TGtGDRsla8op0vKe3O0UuMRBVDm9N8uX1Zg/3s8+hmU/sGS/wf8kN0UWZP/tgokJCY+jX3ENmWqJ3zNiJonoKXxalcPY9wFqExqmf3fvIuL+SM2WZNX9SCheHAZnZ2++h9FyxufdaQfG6CBznTvQshtDhSyA4jQieRmExhO2gaFBoi5OK8EkYECiqX9jdd1wauP7tbVgrw8a/TzETBpkp1nWZ96sg8+VV8j0j6VF4Dozo3sB4ix0ZypD3iO3r+QvQbfi1KVkobwcBkj//hmp5msSbXHxqlC67bCtDDr2fN/43wYvMaFkK1dOALNjlJa6Z8RuIP0vfAZfVhj/iqoy46fpKwgAAAABJRU5ErkJggg==);
-            background-size: 1.3rem 1.3rem;
+        body {
+            /* background: lightgray; */
         }
         
-        #box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 300px;
+        #Agent-Area {
             background: lightcoral;
-            background-image: url(./static/img/time.png);
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position-y: 50%;
+        }
+        
+        #Client-Area {
+            background: lightblue;
+        }
+        
+        #AnychatVideo {
+            width: 1200px;
+            height: 500px;
+            margin-top: 100px;
+            overflow: hidden;
+            margin: 100px auto 0;
+        }
+        
+        #Agent-Area {
+            width: 600px;
+            height: 400px;
+            float: left;
+        }
+        
+        #Client-Area video,
+        #Agent-Area video {
+            width: 100%;
+        }
+        
+        #Client-Area {
+            width: 600px;
+            height: 400px;
+            float: right;
+        }
+        
+        #IM-Message {
+            clear: both;
+            width: 1196px;
+            height: 94px;
+            border: 1px solid lightgray;
+            margin-top: 320px;
+            -moz-box-shadow: 2px 2px 5px darkgray;
+            -webkit-box-shadow: 2px 2px 5px darkgray;
+            box-shadow: 2px 2px 5px darkgray;
         }
     </style>
 </head>
 
 <body>
-    <div id="info">
-        <p>hello</p>
+    <div id="AnychatVideo">
+        <!--座席视频画面-->
+        <div id="Agent-Area"></div>
+        <!--客户视频画面-->
+        <div id="Client-Area"></div>
+        <!--透明通道信息-->
+        <div id="IM-Message" ref="immessage"></div>
     </div>
-    <div id="box">
-        this is text
-    </div>
+
     <script>
         var js = {
             "name": "richard",
