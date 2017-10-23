@@ -54,31 +54,46 @@
 </head>
 
 <body>
-    <div id="AnychatVideo">
-        <!--座席视频画面-->
+    <!-- <div id="AnychatVideo">
         <div id="Agent-Area"></div>
-        <!--客户视频画面-->
         <div id="Client-Area"></div>
-        <!--透明通道信息-->
         <div id="IM-Message" ref="immessage"></div>
-    </div>
-
+    </div> -->
+    <button id="run">开启网络摄像头</button>
+    <Br/>
+    <video id="webcam"></video>
     <script>
-        var js = {
-            "name": "richard",
-            "greet": "hello",
-            "pet": {
-                "dog": "lannister",
-                "cat": "stark"
+        navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
+
+        // if (!navigator.getUserMedia) {
+        //     return false;
+        // }
+
+        var btn = document.getElementById('run');
+        btn.onclick = startWebcam;
+
+        function startWebcam(e) {
+            navigator.getUserMedia({
+                video: true,
+                audio: true
+            }, onSuccess, onError);
+
+            function onSuccess(stream) {
+
+                var video = document.getElementById('webcam');
+
+                if (window.URL) {
+                    video.src = window.URL.createObjectURL(stream);
+                } else {
+                    video.src = stream;
+                }
+
+                video.autoplay = true;
+                //or video.play();
             }
+
+            function onError() {}
         }
-        str = '{"name": "richard", "greet": "hello","pet": { "dog": "lannister", "cat": "stark" }}'
-        var str1 = JSON.parse(str);
-        var str2 = JSON.stringify(js)
-        console.log(str1.name)
-            // var js1 = eval(str);
-            // console.log(js1.name)
-            // console.log(str)
     </script>
 </body>
 
