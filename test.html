@@ -59,41 +59,15 @@
         <div id="Client-Area"></div>
         <div id="IM-Message" ref="immessage"></div>
     </div> -->
-    <button id="run">开启网络摄像头</button>
-    <Br/>
-    <video id="webcam"></video>
+
     <script>
-        navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
-
-        // if (!navigator.getUserMedia) {
-        //     return false;
-        // }
-
-        var btn = document.getElementById('run');
-        btn.onclick = startWebcam;
-
-        function startWebcam(e) {
-            navigator.getUserMedia({
-                video: true,
-                audio: true
-            }, onSuccess, onError);
-
-            function onSuccess(stream) {
-
-                var video = document.getElementById('webcam');
-
-                if (window.URL) {
-                    video.src = window.URL.createObjectURL(stream);
-                } else {
-                    video.src = stream;
-                }
-
-                video.autoplay = true;
-                //or video.play();
-            }
-
-            function onError() {}
-        }
+        'use strict';
+        var a1 = [1, 4, 9, 16];
+        var a2 = a1.map(Math.sqrt); // [1, 2, 3, 4]
+        var a3 = a2.filter((x) => {
+            return x % 2 === 0;
+        }); // [2, 4]
+        console.log(a3)
     </script>
 </body>
 
