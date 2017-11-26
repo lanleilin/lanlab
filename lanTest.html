@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #videoContainer {
+            width: 200px;
+        }
+        
+        #videoContainer video {
+            width: 100%;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
-    <script>
-        var myDate = new Date();
-        myDate.getYear(); //获取当前年份(2位)
-        myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-        myDate.getMonth(); //获取当前月份(0-11,0代表1月)
-        myDate.getDate(); //获取当前日(1-31)
-        myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
-        myDate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数)
-        myDate.getHours(); //获取当前小时数(0-23)
-        myDate.getMinutes(); //获取当前分钟数(0-59)
-        myDate.getSeconds(); //获取当前秒数(0-59)
-        myDate.getMilliseconds(); //获取当前毫秒数(0-999)
-        myDate.toLocaleDateString(); //获取当前日期
-        var mytime = myDate.toLocaleTimeString(); //获取当前时间
-        myDate.toLocaleString();
-        console.log(myDate.toLocaleTimeString())
+    <div id="videoContainer">
+        <a href="http://fanyi.youdao.com/translate?&i='你好'">翻译</a>
+        <a href="http://fanyi.youdao.com/translate?&i=&'你好'=xml&version ">翻译</a>
 
-        function getTime() {
-            var myDate = new Date();
-            return myDate.toLocaleTimeString();
-        }
-        console.log('时间：  ' + getTime())
+        <!-- http://fanyi.youdao.com/translate?&i=delineate&doctype=xml&version -->
+        <!-- video.src = (window.URL || window.webkitURL).createObjectURL(stream); -->
+        <!-- <video id="video" src="static/withyjy.mp4" controls="controls"></video> -->
+        <!-- <video id="video" controls="controls"></video> -->
+    </div>
+    <script>
     </script>
 </body>
-
 
 </html>
