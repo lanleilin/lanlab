@@ -1,6 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import request from 'request';
+// import fs from 'fs';
+// import path from 'path';
+// import request from 'request';
+// 
+// 
+var fs = require('fs');
 
 var movieDir = __dirname + '/movies',
     exts     = ['.mkv', '.avi', '.mp4', '.rm', '.rmvb', '.wmv'];

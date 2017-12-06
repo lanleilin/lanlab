@@ -6,29 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        #videoContainer {
-            width: 200px;
-        }
-        
-        #videoContainer video {
-            width: 100%;
-        }
-    </style>
+
     <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
-    <div id="videoContainer">
-        <a href="http://fanyi.youdao.com/translate?&i='你好'">翻译</a>
-        <a href="http://fanyi.youdao.com/translate?&i=&'你好'=xml&version ">翻译</a>
-
-        <!-- http://fanyi.youdao.com/translate?&i=delineate&doctype=xml&version -->
-        <!-- video.src = (window.URL || window.webkitURL).createObjectURL(stream); -->
-        <!-- <video id="video" src="static/withyjy.mp4" controls="controls"></video> -->
-        <!-- <video id="video" controls="controls"></video> -->
-    </div>
     <script>
+        var sleep = function(time) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    resolve();
+                }, time);
+            })
+        };
+
+        var start = async function() {
+            console.log('start');
+            await sleep(3000);
+            console.log('end');
+        };
+
+        start();
+
+        let qsort = fn => ([x, ...xn]) => x == null ? [] : [
+            ...qsort(fn)(xn.filter(a => fn(a, x))),
+            x,
+            ...qsort(fn)(xn.filter(a => !fn(a, x)))
+        ]
+
+        let arr = [110, 765, -909, 4432, -543]
+        console.log(qsort((a, b) => a < b)(arr))
+
+        // var quickSort = function(arr) {　　
+        //     if (arr.length <= 1) {
+        //         return arr;
+        //     }　　
+        //     var pivotIndex = Math.floor(arr.length / 2);　　
+        //     var pivot = arr.splice(pivotIndex, 1)[0];　　
+        //     var left = [];　　
+        //     var right = [];　　
+        //     for (var i = 0; i < arr.length; i++) {　　　　
+        //         if (arr[i] < pivot) {　　　　　　
+        //             left.push(arr[i]);　　　　
+        //         } else {　　　　　　
+        //             right.push(arr[i]);　　　　
+        //         }　　
+        //     }　　
+        //     return quickSort(left).concat([pivot], quickSort(right));
+        // };
+        // console.log(quickSort(arr))
+
+
+        var qs = function(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
+            // var p = arr[Math.floor(arr.length / 2)];
+            // var p = arr.splice(Math.floor(arr.length / 2), 1)[0];
+            var pivotIndex = Math.floor(arr.length / 2);　　
+            var p = arr.splice(pivotIndex, 1)[0];
+            var left = [];
+            var right = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] < p) {
+                    left.push(arr[i]);
+                } else {
+                    right.push(arr[i]);
+                }
+            }
+            return qs(left).concat([p], qs(right));
+        }
+        console.log(qs(arr).join(''))
+
+        let q = fn => ([x, ...xn]) => x == null ? [] : [
+            ...q(fn)(xn.filter(a => fn(a, x))),
+            x,
+            ...q(fn)(xn.filter(a => !fn(a, x)))
+        ]
+
+        /**
+         * 
+         * @desc   格式化现在距${endTime}的剩余时间
+         * @param  {Date} endTime  
+         * @return {String}
+         */
+        function formatRemainTime(endTime) {
+            var startDate = new Date(); //开始时间
+            var endDate = new Date(endTime); //结束时间
+            var t = endDate.getTime() - startDate.getTime(); //时间差
+            var d = 0,
+                h = 0,
+                m = 0,
+                s = 0;
+            if (t >= 0) {
+                d = Math.floor(t / 1000 / 3600 / 24);
+                h = Math.floor(t / 1000 / 60 / 60 % 24);
+                m = Math.floor(t / 1000 / 60 % 60);
+                s = Math.floor(t / 1000 % 60);
+            }
+            return d + "天 " + h + "小时 " + m + "分钟 " + s + "秒";
+        }
+        // console.log(formatRemainTime(new Date()))
+        console.log(new Date())
+        console.log(Date.parse(new Date()))
     </script>
 </body>
 
