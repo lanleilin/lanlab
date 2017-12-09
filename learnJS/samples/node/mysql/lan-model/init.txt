@@ -1,4 +1,0 @@
-create database nodejs;
-
-grant all privileges on nodejs.* to 'www'@'%' identified by 'www';
-grant all privileges on test.* to 'www'@'%' identified by 'www';

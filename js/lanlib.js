@@ -106,3 +106,13 @@ function formatRemainTime(endTime) {
     }
     return d + "天 " + h + "小时 " + m + "分钟 " + s + "秒";
 }
+/**
+ * 
+ * @desc   格式化现在距${endTime}的剩余时间
+ * @param  {Date} endTime  
+ * @return {String}
+ * 2010-10-20 10:00:00
+ */
+    function getLocalTime(nS) {     
+       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");      
+    }  
