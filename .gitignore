@@ -1,0 +1,7 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+.DS_Store
+.project
+/.idea
+/learnJS/samples/startserver/node_modules/
+
