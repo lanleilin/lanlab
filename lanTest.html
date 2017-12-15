@@ -11,83 +11,25 @@
 </head>
 
 <body>
+    <button id="btn1">click</button>
     <script>
-        var sleep = function(time) {
-            return new Promise(function(resolve, reject) {
-                setTimeout(function() {
-                    resolve();
-                }, time);
-            })
-        };
+        var js = '';
+        $('#btn1').click(function() {
+            // console.log('hello');
+            $.ajax({
+                type: "get",
+                url: "http://localhost:3001/jsonp/testLog",
+                dataType: 'jsonp',
+                jsonp: "callback",
+                success: function(data) {
+                    console.log(data)
 
-        var start = async function() {
-            console.log('start');
-            await sleep(3000);
-            console.log('end');
-        };
-
-        start();
-
-        let qsort = fn => ([x, ...xn]) => x == null ? [] : [
-            ...qsort(fn)(xn.filter(a => fn(a, x))),
-            x,
-            ...qsort(fn)(xn.filter(a => !fn(a, x)))
-        ]
-
-        let arr = [110, 765, -909, 4432, -543]
-        console.log(qsort((a, b) => a < b)(arr))
-
-        // var quickSort = function(arr) {　　
-        //     if (arr.length <= 1) {
-        //         return arr;
-        //     }　　
-        //     var pivotIndex = Math.floor(arr.length / 2);　　
-        //     var pivot = arr.splice(pivotIndex, 1)[0];　　
-        //     var left = [];　　
-        //     var right = [];　　
-        //     for (var i = 0; i < arr.length; i++) {　　　　
-        //         if (arr[i] < pivot) {　　　　　　
-        //             left.push(arr[i]);　　　　
-        //         } else {　　　　　　
-        //             right.push(arr[i]);　　　　
-        //         }　　
-        //     }　　
-        //     return quickSort(left).concat([pivot], quickSort(right));
-        // };
-        // console.log(quickSort(arr))
-
-
-        var qs = function(arr) {
-            if (arr.length <= 1) {
-                return arr;
-            }
-            // var p = arr[Math.floor(arr.length / 2)];
-            // var p = arr.splice(Math.floor(arr.length / 2), 1)[0];
-            var pivotIndex = Math.floor(arr.length / 2);　　
-            var p = arr.splice(pivotIndex, 1)[0];
-            var left = [];
-            var right = [];
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i] < p) {
-                    left.push(arr[i]);
-                } else {
-                    right.push(arr[i]);
+                },
+                error: function(err) {
+                    console.log(err)
                 }
-            }
-            return qs(left).concat([p], qs(right));
-        }
-        console.log(qs(arr).join(''))
-
-        let q = fn => ([x, ...xn]) => x == null ? [] : [
-            ...q(fn)(xn.filter(a => fn(a, x))),
-            x,
-            ...q(fn)(xn.filter(a => !fn(a, x)))
-        ]
-
-        function getLocalTime(nS) {
-            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
-        }
-        console.log(getLocalTime(1512699278000))
+            })
+        })
     </script>
 </body>
 

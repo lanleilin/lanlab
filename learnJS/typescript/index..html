@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/hello.js"></script>
+</head>
+
+<body>
+    <h1>ts test</h1>
+    <button>描述</button>
+    <button>描1</button>
+    <script>
+        var btn = document.getElementsByTagName('button');
+        var targetBtn = {};
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            if (btn[i].innerHTML == '描述') {
+                console.log(btn[i])
+                btn[i].addEventListener('click', function() {
+                    console.log('say hello')
+                })
+            }
+        }
+        // clearInterval(timer);
+
+        // var timer = setInterval(function() {
+        //     for (var i = 0; i < btn.length; i++) {
+        //         if (btn[i].innerHTML == '描述') {
+        //             btn[i].click();
+        //         }
+        //     }
+        // }, 1000)
+        // var timer = setInterval(() => {
+        //     for (var i = 0; i < btn.length; i++) {
+        //         if (btn[i].innerHTML == '描述') {
+        //             btn[i].click();
+        //         }
+        //     }
+        // }, 1000)
+    </script>
+</body>
+
+</html>

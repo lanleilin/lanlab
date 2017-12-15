@@ -1,6 +1,34 @@
 function id(id) {
     return document.getElementById(id)
 }
+// 快速排序
+let qsort = fn => ([x, ...xn]) => x == null ? [] : [
+    ...qsort(fn)(xn.filter(a => fn(a, x))),
+    x,
+    ...qsort(fn)(xn.filter(a => !fn(a, x)))
+]
+
+var quickSort = function(arr) {　　
+    if (arr.length <= 1) {
+        return arr;
+    }　　
+    var pivotIndex = Math.floor(arr.length / 2);　　
+    var pivot = arr.splice(pivotIndex, 1)[0];　　
+    var left = [];　　
+    var right = [];　　
+    for (var i = 0; i < arr.length; i++) {　　　　
+        if (arr[i] < pivot) {　　　　　　
+            left.push(arr[i]);　　　　
+        } else {　　　　　　
+            right.push(arr[i]);　　　　
+        }　　
+    }　　
+    return quickSort(left).concat([pivot], quickSort(right));
+};
+// console.log(quickSort(arr))
+
+// let arr = [110, 765, -909, 4432, -543]
+// console.log(qsort((a, b) => a < b)(arr))
 // 设置随机颜色
 function setColorRandom() {
     this.arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
@@ -113,6 +141,6 @@ function formatRemainTime(endTime) {
  * @return {String}
  * 2010-10-20 10:00:00
  */
-    function getLocalTime(nS) {     
-       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");      
-    }  
+function getLocalTime(nS) {
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+}
