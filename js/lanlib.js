@@ -8,6 +8,13 @@ let qsort = fn => ([x, ...xn]) => x == null ? [] : [
     ...qsort(fn)(xn.filter(a => !fn(a, x)))
 ]
 
+// 获取最大值的方法
+Array.max = function(array) {
+    return Math.max.apply(Math, array);
+};
+Array.min = function(array) {
+    return Math.min.apply(Math, array);
+};
 var quickSort = function(arr) {　　
     if (arr.length <= 1) {
         return arr;
