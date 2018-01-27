@@ -4,35 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script type="text/javascript" src='./js/vue.min.js'></script>
 </head>
 
 <body>
-    <h1 id="handleClick">点击</h1>
-    <form>
-        <label>
-            <input type="text" name=""> </label>
-        <label>
-            <input type="text" name=""> </label>
-        <label>
-            <input type="text" name=""> </label>
-    </form>
+<div id="app-5">
+  <p>{{ message }}</p>
+    <p>{{ reversedMessage1 }}</p>
+    <h1 v-show='seenFlag'>seeeeee</h1>
+  <button @click="reverseMessage">翻转 message</button>
+  <button @click="resetFlag">resetFlag </button>
+</div>
+
     <script>
-        function check() {
-            var val = document.querySelectorAll('input');
-            var valArr = Array.from(val)
-            var i = true;
-            valArr.map(function (v) {
-                if (!v.value) {
-                    i = false
-                }
-            })
-            return i
-        }
-        document.getElementById('handleClick').addEventListener('click', function () {
-            var str=check()?'合格':'表单未填写完整'
-            alert(str)
-        })
-    </script>
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    seenFlag:true,
+    message: 'Hello Vue.js!',
+    message1: 'Hello Vjs!'
+  },
+  computed: {
+    // 一个 computed 属性的 getter 函数
+    reversedMessage1: function () {
+      // `this` 指向 vm 实例
+      return this.message1.split('').reverse().join('')
+    }
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    },
+    resetFlag:function(){
+        this.seenFlag=!this.seenFlag;
+    }
+  }
+})
+        </script>
+        
 
 </body>
 
